@@ -34,7 +34,7 @@ if(!isset($_SESSION['ID']))
 		height:500px;
 		float:right;
 	}
-	
+
 	.click
 	{
 		align:center;
@@ -48,7 +48,7 @@ if(!isset($_SESSION['ID']))
 	}
 	input
 	{
-		
+
 	}
 	.appr
 	{
@@ -85,15 +85,15 @@ if(!isset($_SESSION['ID']))
 		<th>선택</th><th width="40px">번호</th><th width="150px">아이디</th><th width="120px">이름</th><th>가입요청일</th>
 	</tr>
 <?php
-	
+
 	include "conn.php";
-	
+
 	$sql = "select no, id, name, join_date from user where approval = 0";
 	$result = mysqli_query($conn, $sql);
 	$rows = mysqli_num_rows($result);
 	$fields = mysqli_num_fields($result);
 	$arr = mysqli_fetch_all($result, MYSQLI_ASSOC);
-	
+
 
 	for($i=0; $i<$rows; $i++)
 	{
@@ -105,8 +105,8 @@ if(!isset($_SESSION['ID']))
 		<td style="text-align:center" width="120px"><?=$arr[$i]['name']?></td>
 		<td style="text-align:center" width="200px"><?=$arr[$i]['join_date']?></td>
 	</tr>
-<?php	
-	}	
+<?php
+	}
 ?>
 	<tr height="50px">
 		<td style="text-align:right" colspan="5"><input type="submit" value="승인"></td>
@@ -125,9 +125,10 @@ $diff_date = date("Y-m-d H:i:s", strtotime("-90 day"));
 $sql = "SELECT no,id,name,last_login FROM user WHERE last_login <= '{$diff_date}'";
 
 $result = mysqli_query($conn,$sql);
+mysqli_close($conn);
 $rows = mysqli_num_rows($result);
 $arr = mysqli_fetch_all($result, MYSQLI_ASSOC);
-
+mysqli_free_result($result);
 echo "<table class='appr'>";
 echo "<tr>
   <th>선택</th><th width='40px'>번호</th><th width='150px'>아이디</th><th width='100px'>이름</th><th>최근 로그인</th>
@@ -163,13 +164,13 @@ for($i=0; $i<$rows; $i++)
 		$("#test").html(data);
 	}
 	function ajax_analysis1()
-	{	
+	{
 		$.ajax({
 			type : "POST",
 			url : "/analysis.php",
 			data : {analys:1},
 			success : analysis
-		});	
+		});
 	}
 	function ajax_analysis2()
 	{
@@ -178,7 +179,7 @@ for($i=0; $i<$rows; $i++)
 			url : "/analysis.php",
 			data : {analys:2},
 			success : analysis
-		});	
+		});
 	}
 	function ajax_analysis3()
 	{
@@ -187,7 +188,7 @@ for($i=0; $i<$rows; $i++)
 			url : "/analysis.php",
 			data : {analys:3},
 			success : analysis
-		});	
+		});
 	}
 
 	$("input[name='analy1']").click(ajax_analysis1);
