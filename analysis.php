@@ -3,7 +3,7 @@
 SESSION_START();
 
 include "conn.php";
-
+/* 주석 추가 */
 $analys = $_POST['analys'];
 
 
@@ -24,7 +24,7 @@ echo "<th>회원번호</th><th>ID</th><th>이름</th><th>가입일</th><th>이�
 			  <td>{$arr[$i]['id']}</td>
 			  <td>{$arr[$i]['name']}</td>
 			  <td>{$arr[$i]['approval_date']}</td>
-			  <td  align='center'><a href='mailto:{$arr[$i]['email']}'><img src='email2.png' width='20px' height='20px'></a></td>";		  
+			  <td  align='center'><a href='mailto:{$arr[$i]['email']}'><img src='email2.png' width='20px' height='20px'></a></td>";
 		echo "</tr>"
 			 ;
 	}
